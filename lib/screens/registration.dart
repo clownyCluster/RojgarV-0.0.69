@@ -12,9 +12,23 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController.addListener(() => setState(() {}));
+    emailController.addListener(() {
+      setState(() {});
+    });
+  }
+
   String email;
-  String password;
+  // String password;
   String phoneNumber;
+  bool isPasswordVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +60,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
+              controller: emailController,
               style: kTextStylewhite,
               cursorColor: Colors.white,
               keyboardType: TextInputType.emailAddress,
@@ -54,6 +69,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your email',
+                labelText: 'Email',
+                prefixIcon: Icon(
+                  Icons.mail,
+                  color: Colors.white,
+                ),
+                suffixIcon: emailController.text.isEmpty
+                    ? Container(
+                        width: 0,
+                      )
+                    : IconButton(
+                        onPressed: () => emailController.clear(),
+                        icon: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        ),
+                      ),
               ),
             ),
             SizedBox(
@@ -62,12 +93,39 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             TextField(
               style: kTextStylewhite,
               cursorColor: Colors.white,
-              obscureText: true,
+              obscureText: isPasswordVisible,
               onChanged: (value) {
-                password = value;
+                passwordController.text = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your password',
+                labelText: 'Password',
+                prefixIcon: Icon(
+                  Icons.password,
+                  color: Colors.white,
+                ),
+                // errorText: 'Password is wrong',
+
+                suffixIcon: passwordController.text.isEmpty
+                    ? Container(
+                        width: 0,
+                      )
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                        icon: isPasswordVisible
+                            ? Icon(
+                                Icons.visibility_off,
+                                color: Colors.white,
+                              )
+                            : Icon(
+                                Icons.visibility,
+                                color: Colors.white,
+                              ),
+                      ),
               ),
             ),
             SizedBox(height: 8),
@@ -79,12 +137,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               },
               keyboardType: TextInputType.number,
               decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your phone number'),
+                  hintText: 'Enter your phone number',
+                  labelText: 'Phone Number',
+                  prefixIcon: Icon(
+                    Icons.phone,
+                    color: Colors.white,
+                  )),
             ),
             SizedBox(
               height: 24.0,
             ),
             Bttns(Colors.white, 'Register', () {
+              print(emailController.text);
+              print(passwordController.text);
               Navigator.pushNamed(context, Home.id);
             }
                 // () async {
@@ -130,5 +195,4 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
-
 }

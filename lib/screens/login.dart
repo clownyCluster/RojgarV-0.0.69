@@ -14,9 +14,26 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
   // final _auth = FirebaseAuth.instance;
+
+  bool isPasswordVisible = true;
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   String email;
-  String password;
+  // String password;
   String phoneNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController.addListener(
+      () => setState(() {}),
+    );
+    emailController.addListener(
+      () => setState(() {}),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,28 +65,75 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
-                style: kTextStylewhite,
-                cursorColor: Colors.white,
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (value) {
-                  email = value;
-                  //Do something with the user input.
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your email')),
+              controller: emailController,
+              style: kTextStylewhite,
+              cursorColor: Colors.white,
+              keyboardType: TextInputType.emailAddress,
+              onChanged: (value) {
+                email = value;
+              },
+              decoration: kTextFieldDecoration.copyWith(
+                hintText: 'Enter your email',
+                labelText: 'Email',
+                prefixIcon: Icon(
+                  Icons.mail,
+                  color: Colors.white,
+                ),
+                suffixIcon: emailController.text.isEmpty
+                    ? Container(
+                        width: 0,
+                      )
+                    : IconButton(
+                        onPressed: () => emailController.clear(),
+                        icon: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        ),
+                      ),
+              ),
+            ),
             SizedBox(
               height: 8.0,
             ),
             TextField(
-                style: kTextStylewhite,
-                cursorColor: Colors.white,
-                obscureText: true,
-                onChanged: (value) {
-                  password = value;
-                  //Do something with the user input.
-                },
-                decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password')),
+              style: kTextStylewhite,
+              cursorColor: Colors.white,
+              obscureText: isPasswordVisible,
+              onChanged: (value) {
+                passwordController.text = value;
+                
+              },
+              decoration: kTextFieldDecoration.copyWith(
+                hintText: 'Enter your password',
+                labelText: 'Password',
+                prefixIcon: Icon(
+                  Icons.password,
+                  color: Colors.white,
+                ),
+                // errorText: 'Password is wrong',
+
+                suffixIcon: passwordController.text.isEmpty
+                    ? Container(
+                        width: 0,
+                      )
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isPasswordVisible = !isPasswordVisible;
+                          });
+                        },
+                        icon: isPasswordVisible
+                            ? Icon(
+                                Icons.visibility_off,
+                                color: Colors.white,
+                              )
+                            : Icon(
+                                Icons.visibility,
+                                color: Colors.white,
+                              ),
+                      ),
+              ),
+            ),
             SizedBox(
               height: 24.0,
             ),

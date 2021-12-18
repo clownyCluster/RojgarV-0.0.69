@@ -10,6 +10,7 @@ const kMessageTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   hintText: 'Type your message here...',
   hintStyle: TextStyle(fontFamily: 'Salsa', color: Colors.white),
+  
   border: InputBorder.none,
 );
 
@@ -24,16 +25,17 @@ const kTextStyleBlack = TextStyle(color: Colors.black, fontSize: 18, fontWeight:
 const kTextFieldDecoration = InputDecoration(
   hintText: '',
   hintStyle: TextStyle(color: Colors.white, fontFamily: 'Salsa'),
+  labelStyle: TextStyle(fontFamily: 'Salsa', color: Colors.white),
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.redAccent, width: 1.0),
+    borderSide: BorderSide(color: Colors.white70, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.redAccent, width: 2.0),
+    borderSide: BorderSide(color: Colors.white, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );

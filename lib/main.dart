@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rojgar_assignment/screens/addPostPage.dart';
 import 'package:rojgar_assignment/screens/maps.dart';
 import './screens/login.dart';
 import './screens/notification.dart';
@@ -27,6 +28,7 @@ class Rojgar extends StatelessWidget {
         Notifications.id: (context) => Notifications(),
         Trending.id: (context) => Trending(),
         GoogleMaps.id:(context) => GoogleMaps(),
+        AddPost.id: (context) => AddPost(),
       },
       debugShowCheckedModeBanner: false,
       home: Home(),

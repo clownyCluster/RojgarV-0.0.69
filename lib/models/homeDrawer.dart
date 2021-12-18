@@ -53,6 +53,7 @@ class HomeDrawer extends StatelessWidget {
                 ),
               ),
               ListTile(
+                leading: Icon(Icons.map_outlined),
                 title: Text(
                   'Maps',
                   style: kTextStyleBlack,
@@ -62,6 +63,7 @@ class HomeDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.settings),
                 title: Text('Settings', style: kTextStyleBlack),
                 onTap: () {
                   // Update the state of the app
@@ -71,6 +73,7 @@ class HomeDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.phone),
                 title: Text('About us', style: kTextStyleBlack),
                 onTap: () {
                   // Update the state of the app
@@ -80,11 +83,13 @@ class HomeDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.report),
                   title: Text(
                 'Report a problem!',
                 style: kTextStyleBlack,
               )),
               ListTile(
+                leading: Icon(Icons.logout),
                 title: Text(
                   'Log Out',
                   style: kTextStyleBlack,
@@ -99,7 +104,7 @@ class HomeDrawer extends StatelessWidget {
         ),
         Positioned(
             bottom: 20,
-            left: MediaQuery.of(context).size.width * 0.3,
+            left: MediaQuery.of(context).size.width * 0.35,
             child: Text('0.0.69')),
       ],
     );
